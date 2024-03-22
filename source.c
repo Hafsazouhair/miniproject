@@ -8,7 +8,7 @@ Task tasks[MAX_TASKS];
 int numTasks = 0;
 
 void addTask() {
-    if (numTasks >= MAX_TASKS) {
+    if (numTasks > MAX_TASKS) {
         printf("La liste des tâches est pleine.\n");
         return;
     }
