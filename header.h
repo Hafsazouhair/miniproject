@@ -18,5 +18,5 @@ void editTask();
 void deleteTask();
 
 void printTasks();
-
+void filtre(int priority);
 #endif
