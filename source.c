@@ -3,58 +3,58 @@
 #include <string.h>
 #include "header.h"
 
-// Liste des t‚ches
+// Liste des t√¢ches
 Task tasks[MAX_TASKS];
 int numTasks = 0;
 
 void addTask() {
     if (numTasks >= MAX_TASKS) {
-        printf("La liste des t‚ches est pleine.\n");
+        printf("La liste des t√¢ches est pleine.\n");
         return;
     }
 Task newTask;
     newTask.id = numTasks + 1;
 
-    printf("Description de la t‚che : ");
+    printf("Description de la t√¢che : ");
     scanf(" %[^\n]", newTask.description);
 
     printf("Priority de la tache (1 - Faible, 2 - Moyenne, 3 - Haute) : ");
     scanf("%d", &newTask.priority);
 
-    printf("Entrer 0 (terminÈe) ou 1 (non terminÈe) : ");
+    printf("Entrer 0 (termin√©e) ou 1 (non termin√©e) : ");
     scanf("%d", &newTask.completed);
 
     tasks[numTasks++] = newTask;
-    printf("T‚che ajoutÈe avec succËs.\n");
+    printf("T√¢che ajout√©e avec succ√®s.\n");
 }
 void editTask() {
     int taskId;
-    printf("Entrez l'ID de la t‚che ‡ modifier : ");
+    printf("Entrez l'ID de la t√¢che √† modifier : ");
     scanf("%d", &taskId);
 
     if (taskId < 1 || taskId > numTasks) {
-        printf("ID de t‚che invalide.\n");
+        printf("ID de t√¢che invalide.\n");
         return;
     }
 
-    printf("Nouvelle description de la t‚che : ");
+    printf("Nouvelle description de la t√¢che : ");
     scanf(" %[^\n]", tasks[taskId - 1].description);
 
-    printf("Modifier la prioritÈ de la t‚che (1 - Faible, 2 - Moyenne, 3 - Haute) : ");
+    printf("Modifier la priorit√© de la t√¢che (1 - Faible, 2 - Moyenne, 3 - Haute) : ");
     scanf("%d", &tasks[taskId - 1].priority);
 
-    printf("Modifier l'Ètat de la t‚che (0 - TerminÈe, 1 - Non terminÈe) : ");
+    printf("Modifier l'√©tat de la t√¢che (0 - Termin√©e, 1 - Non termin√©e) : ");
     scanf("%d", &tasks[taskId - 1].completed);
 
-    printf("T‚che modifiÈe avec succËs.\n");
+    printf("T√¢che modifi√©e avec succ√®s.\n");
 }
 void deleteTask() {
     int taskId;
-    printf("Entrez l'ID de la t‚che ‡ supprimer : ");
+    printf("Entrez l'ID de la t√¢che √† supprimer : ");
     scanf("%d", &taskId);
 
     if (taskId < 1 || taskId > numTasks) {
-        printf("ID de t‚che invalide.\n");
+        printf("ID de t√¢che invalide.\n");
         return;
     }
 
@@ -63,14 +63,31 @@ void deleteTask() {
     }
 
     numTasks--;
-    printf("T‚che supprimÈe avec succËs.\n");
+    printf("T√¢che supprim√©e avec succ√®s.\n");
+}
+void filtre(int priority) {
+    int found = 0;
+    printf("ID  Description  Priority Status\n");
+
+    for (int i = 0; i < numTasks; i++) {
+        if (tasks[i].priority == priority) {
+            printf("%d %s %d %d\n", tasks[i].id,tasks[i].description,
+                   tasks[i].priority,
+                   tasks[i].completed);
+            found = 1;
+        }
+    }
+
+    if (!found) {
+        printf("No tasks found with priority %d.\n", priority);
+    }
 }
 
 void printTasks() {
-    printf("Liste des t‚ches :\n");
+    printf("Liste des t√¢ches :\n");
     printf("ID Description Priority Completed\n");
     for (int i = 0; i < numTasks; i++) {
-        printf("%d %s %d %s\n", tasks[i].id, tasks[i].description, tasks[i].priority, tasks[i].completed ? "Non terminÈe" : "TerminÈe");
+        printf("%d %s %d %s\n", tasks[i].id, tasks[i].description, tasks[i].priority, tasks[i].completed ? "Non termin√©e" : "Termin√©e");
 
-††††}
+¬†¬†¬†¬†}
 }
